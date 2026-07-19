@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f6f2e9" />
+    <meta name="description" content="三天一个循环、每天两餐、16+8进食窗口的轻量饮食计划与本地打卡工具。" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="轻盈循环" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>无限循环饮食法 · 迅猛轻盈版</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">3 DAY LOOP</p>
+          <h1>轻盈循环</h1>
+        </div>
+        <button class="icon-button" id="openSettings" type="button" aria-label="打开设置">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21h-4v-.08A1.7 1.7 0 0 0 8.97 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3v-4h.08A1.7 1.7 0 0 0 4.6 8.94a1.7 1.7 0 0 0-.34-1.88L4.2 7l2.83-2.83.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 10 3.01V3h4v.08a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06L19.8 7l-.06.06a1.7 1.7 0 0 0-.34 1.88A1.7 1.7 0 0 0 20.96 10H21v4h-.08A1.7 1.7 0 0 0 19.4 15Z"/></svg>
+        </button>
+      </header>
+
+      <main id="appMain" tabindex="-1">
+        <section class="view active" id="todayView" aria-labelledby="todayTitle">
+          <div class="hero-card" id="heroCard">
+            <div class="hero-topline">
+              <span class="day-pill" id="dayPill">DAY 1</span>
+              <span class="round-label" id="roundLabel">第 1 轮</span>
+            </div>
+            <div class="hero-copy">
+              <p class="hero-kicker" id="heroKicker">轻断食 · 收拢</p>
+              <h2 id="todayTitle">蛋白质日</h2>
+              <p id="heroDescription">用清晰、简单的选择开启本轮。</p>
+            </div>
+            <div class="cycle-track" aria-label="本轮三日进度">
+              <span class="cycle-dot active" data-cycle-dot="0"><b>1</b></span>
+              <span class="cycle-line"></span>
+              <span class="cycle-dot" data-cycle-dot="1"><b>2</b></span>
+              <span class="cycle-line"></span>
+              <span class="cycle-dot" data-cycle-dot="2"><b>3</b></span>
+            </div>
+          </div>
+
+          <section class="window-card" aria-labelledby="windowTitle">
+            <div class="window-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <div class="window-copy">
+              <p class="card-label" id="windowTitle">16 + 8 进食窗口</p>
+              <strong id="windowTimes">12:00 — 20:00</strong>
+              <span id="windowStatus">正在计算当前状态…</span>
+            </div>
+            <button class="text-button" id="editWindow" type="button">调整</button>
+          </section>
+
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">TODAY'S PLATE</p>
+              <h3>今天这样吃</h3>
+            </div>
+            <span id="mealProgress">0 / 2 餐</span>
+          </div>
+
+          <div class="meal-list" id="mealList"></div>
+
+          <button class="complete-button" id="completeDay" type="button" disabled>
+            <span>完成今天，进入下一日</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <p class="complete-hint" id="completeHint">完成两顿正餐后即可进入下一日</p>
+        </section>
+
+        <section class="view" id="planView" aria-labelledby="planTitle">
+          <div class="page-intro">
+            <p class="eyebrow">YOUR 3-DAY RHYTHM</p>
+            <h2 id="planTitle">三日循环食谱</h2>
+            <p>由轻到丰，再回到轻。每一天都保留两顿正餐，可按需加一份极简早餐。</p>
+          </div>
+          <div class="rhythm-graphic" aria-label="食量由少到多再回落">
+            <div class="rhythm-bar level-1"><span>收拢</span><b>DAY 1</b></div>
+            <div class="rhythm-bar level-2"><span>过渡</span><b>DAY 2</b></div>
+            <div class="rhythm-bar level-3"><span>满足</span><b>DAY 3</b></div>
+            <div class="rhythm-return"><span>↘</span> 回到 Day 1</div>
+          </div>
+          <div class="plan-list" id="planList"></div>
+          <article class="logic-card">
+            <p class="eyebrow">WHY IT LOOPS</p>
+            <h3>核心设计逻辑</h3>
+            <div class="logic-item"><span>01</span><p><strong>大小餐搭配</strong>大餐正经吃，小餐简单收口，在满足感和总量之间找平衡。</p></div>
+            <div class="logic-item"><span>02</span><p><strong>食量形成波浪</strong>蛋白质日最少，健康日稍增，类健康日最丰富，然后重新循环。</p></div>
+            <div class="logic-item"><span>03</span><p><strong>不做液断</strong>原方案主张用蛋白质日替代液断；实际效果因人而异，不等同于医学结论。</p></div>
+          </article>
+        </section>
+
+        <section class="view" id="guideView" aria-labelledby="guideTitle">
+          <div class="page-intro">
+            <p class="eyebrow">KEEP IT SIMPLE</p>
+            <h2 id="guideTitle">执行指南</h2>
+            <p>不追求复杂记录，只守住进食窗口、餐次和饮品底线。</p>
+          </div>
+
+          <section class="stat-grid" aria-label="循环数据">
+            <div class="stat-card"><span>已完成</span><strong id="roundStat">0</strong><small>完整轮次</small></div>
+            <div class="stat-card"><span>当前</span><strong id="dayStat">D1</strong><small>执行日</small></div>
+          </section>
+
+          <section class="rules-card">
+            <h3>四条简单规则</h3>
+            <div class="rule-row"><span>01</span><p><strong>每天两顿正餐</strong>默认不吃早餐，不额外增加第三顿正餐。</p></div>
+            <div class="rule-row"><span>02</span><p><strong>早餐可以有</strong>第一餐前如需要，只吃 1 个鸡蛋 + 当日允许饮品。</p></div>
+            <div class="rule-row"><span>03</span><p><strong>都放在 8 小时内</strong>早餐、正餐和零食都不越过设定窗口。</p></div>
+            <div class="rule-row"><span>04</span><p><strong>饮品守底线</strong>以黑咖啡、茶、柠檬水为主；标注无奶的日子不加奶，全程不加糖。</p></div>
+          </section>
+
+          <details class="safety-card">
+            <summary>
+              <span class="safety-icon">!</span>
+              <span><strong>开始前先看安全提示</strong><small>本工具是计划整理，不是医疗建议</small></span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="safety-content">
+              <p>Day 1 的食物量可能非常低。若你的全天摄入低于约 800–1000 千卡，属于需要专业指导的极低热量范围，不建议自行长期循环。</p>
+              <p>未满 18 岁、孕期或哺乳期、1 型糖尿病、体重过低、有进食障碍史的人群，不应自行尝试间歇性禁食。正在用药或有慢性病者先咨询医生或注册营养师。</p>
+              <p>若出现明显头晕、心慌、低血糖、持续恶心、异常焦虑或暴食冲动，请停止并寻求专业帮助。短期体重变化可能包含水分波动，不代表同等脂肪减少。</p>
+              <div class="source-links">
+                <a href="https://www.hopkinsmedicine.org/health/expert-qa/intermittent-fasting-what-is-it-and-how-does-it-work" target="_blank" rel="noreferrer">间歇性进食适用人群 · Johns Hopkins</a>
+                <a href="https://www.nhs.uk/conditions/overweight-and-obesity/" target="_blank" rel="noreferrer">极低热量饮食说明 · NHS</a>
+                <a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-type-2-diabetes/game-plan" target="_blank" rel="noreferrer">稳健减重目标 · NIDDK</a>
+              </div>
+            </div>
+          </details>
+
+          <section class="privacy-card">
+            <div>
+              <span class="privacy-dot"></span>
+              <p><strong>你的记录只留在这台设备</strong><small>无需登录，不上传饮食或打卡数据</small></p>
+            </div>
+            <button class="ghost-button" id="resetProgress" type="button">重置进度</button>
+          </section>
+
+          <section class="install-card">
+            <p class="eyebrow">ADD TO IPHONE</p>
+            <h3>像 App 一样放到主屏幕</h3>
+            <ol>
+              <li><span>1</span>用 iPhone 的 Safari 打开本页面</li>
+              <li><span>2</span>点底部“分享”按钮</li>
+              <li><span>3</span>选择“添加到主屏幕”</li>
+            </ol>
+          </section>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="主要导航">
+        <button class="nav-item active" type="button" data-view="todayView">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z"/></svg><span>今天</span>
+        </button>
+        <button class="nav-item" type="button" data-view="planView">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M8 2v4M16 2v4M4 9h16"/></svg><span>三日食谱</span>
+        </button>
+        <button class="nav-item" type="button" data-view="guideView">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.1"/></svg><span>指南</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="modal-backdrop" id="settingsModal" aria-hidden="true">
+      <section class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="sheet-handle"></div>
+        <div class="modal-heading"><div><p class="eyebrow">SET YOUR RHYTHM</p><h2 id="settingsTitle">进食窗口</h2></div><button class="close-button" type="button" data-close-modal aria-label="关闭">×</button></div>
+        <p class="modal-note">选择每天开始进食的时间，结束时间将自动设为 8 小时后。所有早餐、正餐和零食都放在这个窗口内。</p>
+        <label class="time-field" for="eatingStart"><span>开始进食</span><input id="eatingStart" type="time" value="12:00" /></label>
+        <div class="window-preview"><span>你的 8 小时窗口</span><strong id="windowPreview">12:00 — 20:00</strong></div>
+        <button class="save-button" id="saveSettings" type="button">保存设置</button>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="successModal" aria-hidden="true">
+      <section class="modal-sheet success-sheet" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+        <div class="celebration-mark" aria-hidden="true"><span>✦</span><b>3</b><span>✦</span></div>
+        <p class="eyebrow">LOOP COMPLETE</p>
+        <h2 id="successTitle">一轮完成</h2>
+        <p id="successMessage">轻、稳、满足，你完成了完整三日循环。</p>
+        <button class="save-button" type="button" data-close-success>开始新一轮</button>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

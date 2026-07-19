@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="35" x2="440" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8efdf"/>
+      <stop offset=".52" stop-color="#e9dca5"/>
+      <stop offset="1" stop-color="#edbd9f"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#26342c" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="118" fill="#f6f2e9"/>
+  <circle cx="256" cy="252" r="183" fill="url(#bg)"/>
+  <path d="M158 208c21-64 83-97 144-76 31 11 55 34 69 62" fill="none" stroke="#253229" stroke-width="25" stroke-linecap="round"/>
+  <path d="m359 159 16 42-44 4" fill="none" stroke="#253229" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M354 302c-23 62-84 94-144 73-31-11-56-35-69-64" fill="none" stroke="#253229" stroke-width="25" stroke-linecap="round"/>
+  <path d="m153 347-16-42 44-4" fill="none" stroke="#253229" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="256" y="304" text-anchor="middle" fill="#253229" font-family="Georgia, serif" font-size="153" font-weight="700" filter="url(#shadow)">3</text>
+</svg>

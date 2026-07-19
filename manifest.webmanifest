@@ -1,0 +1,27 @@
+{
+  "name": "无限循环饮食法——迅猛轻盈版",
+  "short_name": "轻盈循环",
+  "description": "三日循环、两餐与16+8进食窗口的本地打卡工具",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f2e9",
+  "theme_color": "#f6f2e9",
+  "categories": ["lifestyle", "health"],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
